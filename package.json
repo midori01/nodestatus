@@ -2,7 +2,7 @@
   "name": "nodestatus",
   "version": "0.0.0",
   "private": true,
-  "repository": "https://github.com/cokemine/nodestatus.git",
+  "repository": "https://github.com/midori01/nodestatus.git",
   "license": "MIT",
   "author": "Kagurazaka Mizuki",
   "main": "index.js",
