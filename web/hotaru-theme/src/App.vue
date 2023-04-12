@@ -60,10 +60,6 @@ export default defineComponent({
 </script>
 
 <style>
-body {
-  /* Replace your background image at this place! */
-  background: url('./assets/img/bg_parts.png') repeat-y left top, url('./assets/img/bg.png') repeat left top;
-}
 
 /* Global */
 div.bar {
@@ -132,9 +128,6 @@ div.bar {
 
   #app #header {
     height: 20rem;
-
-    /* Replace your header image (for mobile use) at this place! */
-    background: url('assets/img/cover_mobile.png') no-repeat center center !important;
   }
 }
 
