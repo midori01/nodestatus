@@ -2,11 +2,11 @@
   <table class="ui basic unstackable table" id="table">
     <thead>
     <tr>
-      <th id="status4">运行状态</th>
-      <th id="name">节点名</th>
+      <th id="status4">状态</th>
+      <th id="name">节点</th>
       <th id="type">类型</th>
-      <th id="location">服务器位置</th>
-      <th id="uptime">在线时间</th>
+      <th id="location">位置</th>
+      <th id="uptime">在线</th>
       <th id="load">负载</th>
       <th id="network">网络↓|↑</th>
       <th id="traffic">流量↓|↑</th>
