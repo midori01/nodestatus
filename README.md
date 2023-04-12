@@ -13,7 +13,7 @@ chmod +x ~/.docker/cli-plugins/docker-compose
 # Download docker-compose.yml
 mkdir ~/nodestatus
 cd ~/nodestatus
-wget https://raw.githubusercontent.com/midori/nodestatus/master/docker-compose.yml
+wget https://raw.githubusercontent.com/midori01/nodestatus/master/docker-compose.yml
 vim docker-compose.yml
 docker compose up -d
 
