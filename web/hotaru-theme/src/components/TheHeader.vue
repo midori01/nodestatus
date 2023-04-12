@@ -40,6 +40,16 @@ export default defineComponent({
   background: rgba(255, 255, 255, 1);
 }
 
+#header::after {
+   content: '';
+   position: absolute;
+   right: 15px;
+   bottom: 0;
+   z-index: 2;
+   color: #CDCDCD;
+   text-shadow: 1px 1px 1px #666;
+}
+
 .header__content {
   position: absolute;
   z-index: 3;
@@ -53,10 +63,11 @@ export default defineComponent({
 #header h1 {
   font-size: 3.57rem;
   white-space: nowrap;
+  color: black;
 }
 
 #header p {
   font-size: 1.5rem;
-  color: aliceblue;
+  color: black;
 }
 </style>
