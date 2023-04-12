@@ -24,10 +24,8 @@ export default defineComponent({
 </script>
 <style>
 #header {
-  height: 25rem;
+  height: 5rem;
   position: relative;
-  /*Replace your header image at this place!*/
-  background: url("../assets/img/cover.png") no-repeat center center;
 }
 
 #header::before {
@@ -39,17 +37,7 @@ export default defineComponent({
   right: 0;
   z-index: 1;
   width: 100%;
-  background: rgba(66, 64, 64, .15);
-}
-
-#header::after {
-  content: 'Pixiv: 86597206';
-  position: absolute;
-  right: 15px;
-  bottom: 0;
-  z-index: 2;
-  color: #CDCDCD;
-  text-shadow: 1px 1px 1px #666;
+  background: rgba(255, 255, 255, 1);
 }
 
 .header__content {
