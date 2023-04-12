@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>Powered by <a href="https://github.com/cokemine/nodestatus">NodeStatus</a></p>
+    <p>Powered by <a href="https://github.com/midori01/nodestatus">NodeStatus</a></p>
   </div>
 </template>
 
