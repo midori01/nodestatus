@@ -122,7 +122,7 @@ div.bar {
   }
 
   #app #header {
-    height: 10rem;
+    height: 5rem;
   }
 }
 
