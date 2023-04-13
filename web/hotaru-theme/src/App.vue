@@ -121,13 +121,8 @@ div.bar {
     font-size: 1.5rem;
   }
 
-  #cards .card .card__content p {
-    margin-bottom: .6rem;
-    font-size: 1.2rem;
-  }
-
   #app #header {
-    height: 20rem;
+    height: 10rem;
   }
 }
 
