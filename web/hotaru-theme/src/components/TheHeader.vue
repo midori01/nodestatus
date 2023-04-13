@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 <style>
 #header {
-  height: 5rem;
+  height: 10rem;
   position: relative;
 }
 
@@ -47,7 +47,6 @@ export default defineComponent({
    bottom: 0;
    z-index: 2;
    color: #CDCDCD;
-   text-shadow: 1px 1px 1px #666;
 }
 
 .header__content {
@@ -56,7 +55,6 @@ export default defineComponent({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-shadow: 2px 2px 2px #666;
   text-align: center;
 }
 
