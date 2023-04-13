@@ -8,6 +8,8 @@ curl -fsSL https://get.docker.com | bash -s docker
 docker --version
 mkdir -p ~/.docker/cli-plugins/
 curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+# For arm64
+# curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-aarch64 -o ~/.docker/cli-plugins/docker-compose
 chmod +x ~/.docker/cli-plugins/docker-compose
 
 # Download docker-compose.yml
