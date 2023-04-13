@@ -5,7 +5,6 @@
     <div class="container">
       <servers-table :servers="servers" />
       <update-time :updated="updated" />
-      <servers-card :servers="servers" />
     </div>
     <the-footer />
   </global-context>
@@ -20,7 +19,6 @@ import UpdateTime from '@nodestatus/web-utils/vue/components/UpdateTime.vue';
 import GlobalContext from '@nodestatus/web-utils/vue/components/GlobalContext.vue';
 import TheHeader from './components/TheHeader.vue';
 import ServersTable from './components/ServersTable.vue';
-import ServersCard from './components/ServersCard.vue';
 import TheFooter from './components/TheFooter.vue';
 import type { ServerItem } from './types';
 
@@ -33,7 +31,6 @@ export default defineComponent({
     TheHeader,
     TheError,
     ServersTable,
-    ServersCard,
     TheFooter,
     UpdateTime,
     GlobalContext
@@ -115,10 +112,6 @@ div.bar {
 
   #servers div.progress {
     width: 40px;
-  }
-
-  #cards .card .card__header span {
-    font-size: 1.5rem;
   }
 
   #app #header {
