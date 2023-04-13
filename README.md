@@ -6,7 +6,6 @@
 mkdir ~/nodestatus
 cd ~/nodestatus
 wget https://raw.githubusercontent.com/midori01/nodestatus/master/docker-compose.yml
-vim docker-compose.yml
 docker compose up -d
 ```
 
