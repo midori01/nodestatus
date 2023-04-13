@@ -16,7 +16,7 @@
         <p>Network: {{
             `${formatNetwork(server.status.network_rx)} | ${formatNetwork(server.status.network_tx)}`
           }}</p>
-        <p>负载状态: {{ getStatus ? getLoad : 'Offline' }}</p>
+        <p>Load: {{ getStatus ? getLoad : 'Offline' }}</p>
       </div>
     </div>
   </div>
