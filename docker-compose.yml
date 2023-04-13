@@ -16,9 +16,8 @@ services:
       USE_WEB: "true"
 
       WEB_THEME: "hotaru-theme"
-      WEB_TITLE: "NodeStatus"
-      WEB_SUBTITLE: ""
-      WEB_HEADTITLE: "NodeStatus"
+      WEB_TITLE: "ɴᴏᴅᴇsᴛᴀᴛᴜs"
+      WEB_HEADTITLE: "ᴍɪᴅᴏʀɪ's ɴᴏᴅᴇsᴛᴀᴛᴜs"
 
       WEB_USERNAME: "admin"
       WEB_PASSWORD: ""
