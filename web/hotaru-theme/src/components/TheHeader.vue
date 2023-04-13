@@ -4,7 +4,6 @@
       <h1 class="ui inverted header">
         {{ config.title }}
       </h1>
-      <p>{{ config.subTitle }}</p>
     </div>
   </div>
 </template>
@@ -61,11 +60,6 @@ export default defineComponent({
 #header h1 {
   font-size: 3.57rem;
   white-space: nowrap;
-  color: black;
-}
-
-#header p {
-  font-size: 1.5rem;
   color: black;
 }
 </style>
