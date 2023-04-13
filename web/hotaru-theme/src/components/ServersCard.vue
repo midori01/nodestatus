@@ -8,16 +8,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import CardItem from './CardItem.vue';
 import type { ServerItem } from '../types';
 
 export default defineComponent({
   name: 'ServersCard',
   props: {
     servers: Array as PropType<Array<ServerItem>>
-  },
-  components: {
-    CardItem
   }
 });
 </script>
