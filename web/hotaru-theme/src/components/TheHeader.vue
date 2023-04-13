@@ -23,7 +23,7 @@ export default defineComponent({
 </script>
 <style>
 #header {
-  height: 10rem;
+  height: 5rem;
   position: relative;
 }
 
