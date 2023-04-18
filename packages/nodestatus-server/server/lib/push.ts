@@ -55,10 +55,10 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       });
       str += `Node: *${item.name}*\nCurrent Status: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅*Online*\n';
+        str += '✅ *Online*\n';
         online++;
       } else {
-        str += '❌*Offline*';
+        str += '❌ *Offline*';
         str += '\n\n';
         return;
       }
