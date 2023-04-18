@@ -53,22 +53,22 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
             : value;
         }
       });
-      str += `节点名: *${item.name}*\n当前状态: `;
+      str += `Node: *${item.name}*\nCurrent Status: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅*在线*\n';
+        str += '✅*Online*\n';
         online++;
       } else {
-        str += '❌*离线*';
+        str += '❌*Offline*';
         str += '\n\n';
         return;
       }
-      str += `负载: ${parseEntities(item.status.load.toFixed(2))} \n`;
+      str += `Load: ${parseEntities(item.status.load.toFixed(2))} \n`;
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
-      str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
-      str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
+      str += `Memory: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
+      str += `Storage: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
       str += '\n';
     });
-    return `🍊*NodeStatus* \n🤖 当前有 ${total} 台服务器, 其中在线 ${online} 台\n\n${str}`;
+    return `🍊 *NodeStatus*\n🤖 Total: ${total} | Online: ${online}\n\n${str}`;
   };
 
   const tgConfig = options.telegram;
@@ -87,9 +87,9 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     bot.command('start', ctx => {
       const currentChat = ctx.message.chat.id.toString();
       if (chatId.has(currentChat)) {
-        ctx.reply(`🍊NodeStatus\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou have access to this service\\. I will alert you when your servers changed\\.\nYou are currently using NodeStatus: *${parseEntities(process.env.npm_package_version)}*`, { parse_mode: 'MarkdownV2' });
+        ctx.reply(`🍊 *NodeStatus*\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou have access to this service\\. I will alert you when your servers changed\\.\nYou are currently using NodeStatus: *Midori Revised Version*`, { parse_mode: 'MarkdownV2' });
       } else {
-        ctx.reply(`🍊NodeStatus\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou *do not* have permission to use this service\\.\nPlease check your settings\\.`, { parse_mode: 'MarkdownV2' });
+        ctx.reply(`🍊 *NodeStatus*\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou *do not* have permission to use this service\\.\nPlease check your settings\\.`, { parse_mode: 'MarkdownV2' });
       }
     });
 
@@ -111,7 +111,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       if (chatId.has(ctx.message.chat.id.toString())) {
         ctx.reply(getBotStatus(targets), { parse_mode: 'MarkdownV2' });
       } else {
-        ctx.reply('🍊NodeStatus\n*No permission*', { parse_mode: 'MarkdownV2' });
+        ctx.reply('🍊 *NodeStatus*\n*No permission*', { parse_mode: 'MarkdownV2' });
       }
     });
 
@@ -143,7 +143,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       timerMap.delete(username);
     } else {
       return Promise.all(pushList.map(
-        fn => fn(`🍊*NodeStatus* \n😀 One new server has connected\\! \n\n *用户名*: ${parseEntities(username)} \n *节点名*: ${parseEntities(this.servers[username].name)} \n *时间*: ${parseEntities(new Date())}`)
+        fn => fn(`🍊 *NodeStatus*\n😀 One new server has *connected*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username].name)} \nTime: ${parseEntities(new Date())}`)
       ));
     }
   };
@@ -152,7 +152,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     const timer = setTimeout(
       () => {
         Promise.all(pushList.map(
-          fn => fn(`🍊*NodeStatus* \n😰 One server has disconnected\\! \n\n *用户名*: ${parseEntities(username)} \n *节点名*: ${parseEntities(this.servers[username]?.name)} \n *时间*: ${parseEntities(now)}`)
+          fn => fn(`🍊 *NodeStatus*\n😰 One server has *disconnected*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
         )).then();
         cb?.(now);
         timerMap.delete(username);
