@@ -88,7 +88,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     bot.command('start', ctx => {
       const currentChat = ctx.message.chat.id.toString();
       if (chatId.has(currentChat)) {
-        ctx.reply(`🍊 *NodeStatus*\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou have access to this service\\. I will alert you when your servers changed\\.\nYou are currently using NodeStatus: *Midori Revised Version*`, { parse_mode: 'MarkdownV2' });
+        ctx.reply(`🍊 *NodeStatus*\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou have access to this service\\. I will alert you when your servers changed\\.\nYou are currently using NodeStatus: *${parseEntities(process.env.npm_package_version)}*`, { parse_mode: 'MarkdownV2' });
       } else {
         ctx.reply(`🍊 *NodeStatus*\n🤖 Hi, this chat id is *${parseEntities(currentChat)}*\\.\nYou *do not* have permission to use this service\\.\nPlease check your settings\\.`, { parse_mode: 'MarkdownV2' });
       }
