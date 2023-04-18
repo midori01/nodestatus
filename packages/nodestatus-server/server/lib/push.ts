@@ -53,12 +53,13 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
             : value;
         }
       });
-      str += `Node: *${item.name}*\nCurrent Status: `;
+      str += `Node: *${item.name}* \n`;
+      str += `Current Status: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅ *Online*\n';
+        str += '*Online*\n';
         online++;
       } else {
-        str += '❌ *Offline*';
+        str += '*Offline*';
         str += '\n\n';
         return;
       }
