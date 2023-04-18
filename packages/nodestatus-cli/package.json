@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cokemine/nodestatus.git",
+    "url": "https://github.com/midori01/nodestatus.git",
     "directory": "packages/nodestatus-cli"
   },
   "license": "MIT",
