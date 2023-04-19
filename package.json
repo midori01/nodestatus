@@ -4,7 +4,7 @@
   "private": true,
   "repository": "https://github.com/midori01/nodestatus.git",
   "license": "MIT",
-  "author": "Kagurazaka Mizuki",
+  "author": "midori01",
   "main": "index.js",
   "engines": {
     "node": ">=14"
