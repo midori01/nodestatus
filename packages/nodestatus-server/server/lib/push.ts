@@ -53,13 +53,12 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
             : value;
         }
       });
-      str += `Node: *${item.name}* \n`;
-      str += `Current Status: `;
+      str += `Node: *${item.name}*\nStatus: `;
       if (item.status.online4 || item.status.online6) {
-        str += '*Online*\n';
+        str += '✅ *Online*\n';
         online++;
       } else {
-        str += '*Offline*';
+        str += '❌ *Offline*';
         str += '\n\n';
         return;
       }
@@ -69,7 +68,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `Storage: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
       str += '\n';
     });
-    return `🍊 *NodeStatus*\n🤖 Total: ${total} | Online: ${online}\n\n${str}`;
+    return `🍊 *NodeStatus* \n🤖 Server(s): ${total}, Online: ${online}\n\n${str}`;
   };
 
   const tgConfig = options.telegram;
@@ -144,7 +143,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       timerMap.delete(username);
     } else {
       return Promise.all(pushList.map(
-        fn => fn(`🍊 *NodeStatus*\n😀 One new server has *connected*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username].name)} \nTime: ${parseEntities(new Date())}`)
+        fn => fn(`🍊 *NodeStatus*\n✅ One new server is *Online*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username].name)} \nTime: ${parseEntities(new Date())}`)
       ));
     }
   };
@@ -153,7 +152,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     const timer = setTimeout(
       () => {
         Promise.all(pushList.map(
-          fn => fn(`🍊 *NodeStatus*\n😰 One server has *disconnected*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
+          fn => fn(`🍊 *NodeStatus*\n❌ One server is *Offline*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
         )).then();
         cb?.(now);
         timerMap.delete(username);
