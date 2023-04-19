@@ -143,7 +143,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       timerMap.delete(username);
     } else {
       return Promise.all(pushList.map(
-        fn => fn(`🍊 *NodeStatus*\n✅ One new server is *Online*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username].name)} \nTime: ${parseEntities(new Date())}`)
+        fn => fn(`🍊 *NodeStatus*\n✅ One Server is *Online*\\! \n\nNode: ${parseEntities(this.servers[username].name)} \nTime: ${parseEntities(new Date())}`)
       ));
     }
   };
@@ -152,7 +152,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     const timer = setTimeout(
       () => {
         Promise.all(pushList.map(
-          fn => fn(`🍊 *NodeStatus*\n❌ One server is *Offline*\\! \n\nUsername: ${parseEntities(username)} \nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
+          fn => fn(`🍊 *NodeStatus*\n❌ One Server is *Offline*\\! \n\nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
         )).then();
         cb?.(now);
         timerMap.delete(username);
