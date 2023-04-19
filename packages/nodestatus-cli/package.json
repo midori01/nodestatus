@@ -7,7 +7,7 @@
     "directory": "packages/nodestatus-cli"
   },
   "license": "MIT",
-  "author": "Kagurazaka Mizuki",
+  "author": "midori01",
   "main": "index.js",
   "bin": {
     "status-cli": "bin/status-cli.js"
