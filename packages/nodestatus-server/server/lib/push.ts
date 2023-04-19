@@ -55,10 +55,10 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       });
       str += `Node: *${item.name}*\nStatus: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅ *Online*\n';
+        str += '✅ *Running*\n';
         online++;
       } else {
-        str += '❌ *Offline*';
+        str += '❌ *Down*';
         str += '\n\n';
         return;
       }
@@ -68,7 +68,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `Storage: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
       str += '\n';
     });
-    return `🍊 *NodeStatus* \n🤖 Server(s): ${total}, Online: ${online}\n\n${str}`;
+    return `🍊 *NodeStatus* \n🤖 Server(s): ${total}, Running: ${online}\n\n${str}`;
   };
 
   const tgConfig = options.telegram;
