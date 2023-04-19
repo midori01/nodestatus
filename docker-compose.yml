@@ -17,10 +17,10 @@ services:
 
       WEB_THEME: "hotaru-theme"
       WEB_TITLE: "ɴᴏᴅᴇsᴛᴀᴛᴜs"
-      WEB_HEADTITLE: "ᴍɪᴅᴏʀɪ's ɴᴏᴅᴇsᴛᴀᴛᴜs"
+      WEB_HEADTITLE: "ɴᴏᴅᴇsᴛᴀᴛᴜs"
 
-      WEB_USERNAME: "admin"
-      WEB_PASSWORD: "admin"
+      WEB_USERNAME: "username"
+      WEB_PASSWORD: "password"
       WEB_SECRET: "secret"
 
       PUSH_TIMEOUT: 120
