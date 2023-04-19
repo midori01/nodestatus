@@ -13,6 +13,6 @@ docker compose up -d
 ```bash
 cd ~/nodestatus
 docker compose down
-docker pull midori01/nodestatus:latest
+docker pull midori01/nodestatus
 docker compose up -d
 ```
