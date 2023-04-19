@@ -58,7 +58,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
         str += '✅ *Running*\n';
         online++;
       } else {
-        str += '❌ *Down*';
+        str += '🔴 *Down*';
         str += '\n\n';
         return;
       }
@@ -152,7 +152,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
     const timer = setTimeout(
       () => {
         Promise.all(pushList.map(
-          fn => fn(`🍊 *NodeStatus*\n❌ One Server is *Offline*\\! \n\nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
+          fn => fn(`🍊 *NodeStatus*\n🔴 One Server is *Offline*\\! \n\nNode: ${parseEntities(this.servers[username]?.name)} \nTime: ${parseEntities(now)}`)
         )).then();
         cb?.(now);
         timerMap.delete(username);
