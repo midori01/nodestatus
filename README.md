@@ -16,3 +16,10 @@ docker compose down
 docker pull midori01/nodestatus
 docker compose up -d
 ```
+
+# Remove
+```bash
+docker rm -f nodestatus
+docker rmi midori01/nodestatus
+rm -r ~/nodestatus
+```
