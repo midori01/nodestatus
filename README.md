@@ -20,6 +20,6 @@ docker compose up -d
 # Remove
 ```bash
 docker rm -f nodestatus
-docker rmi midori01/nodestatus
+docker rmi $(docker images -q midori01/nodestatus)
 rm -r ~/nodestatus
 ```
