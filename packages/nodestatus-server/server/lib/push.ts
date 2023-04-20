@@ -53,22 +53,22 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
             : value;
         }
       });
-      str += `Node: *${item.name}*\nStatus: `;
+      str += `节点: *${item.name}*\n状态: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅ *Running*\n';
+        str += '✅ *在线*\n';
         online++;
       } else {
-        str += '🔴 *Down*';
+        str += '🔴 *离线*';
         str += '\n\n';
         return;
       }
-      str += `Load: ${parseEntities(item.status.load.toFixed(2))} \n`;
+      str += `负载: ${parseEntities(item.status.load.toFixed(2))} \n`;
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
-      str += `Memory: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
-      str += `Storage: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
+      str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
+      str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
       str += '\n';
     });
-    return `🍊 *NodeStatus* \n🤖 Server(s): ${total}, Running: ${online}\n\n${str}`;
+    return `🍊 *NodeStatus* \n🤖 共 ${total} 台服务器，在线 ${online} 台。\n\n${str}`;
   };
 
   const tgConfig = options.telegram;
