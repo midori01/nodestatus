@@ -1,3 +1,5 @@
+import type NodeStatus from './nodestatus';
+
 export const parseUptime = (item.status.uptime: number): string => {
   if (item.status.uptime >= 86400) return `${Math.floor(item.status.uptime / 86400)} 天`;
 
