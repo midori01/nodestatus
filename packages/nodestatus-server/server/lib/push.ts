@@ -2,7 +2,6 @@ import { timingSafeEqual } from 'crypto';
 import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
-import { parseUptime } from './botuptime';
 import type NodeStatus from './nodestatus';
 
 type PushOptions = {
