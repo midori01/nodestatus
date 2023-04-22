@@ -138,6 +138,9 @@ export default defineComponent({
 }
 
 .expandRow td > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   overflow: hidden;
   transition: max-height .5s ease;
   max-height: 4em;
