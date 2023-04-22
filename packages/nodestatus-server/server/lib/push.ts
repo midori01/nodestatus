@@ -66,7 +66,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `在线: ${Math.round(item.status.uptime)} \n`;
+      str += `在线: ${item.uptime} \n`;
       str += '\n';
     });
     return `🍊 *NodeStatus* \n🤖 共 ${total} 台服务器，在线 ${online} 台。\n\n${str}`;
