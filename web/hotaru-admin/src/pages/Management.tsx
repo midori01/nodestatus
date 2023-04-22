@@ -353,7 +353,7 @@ const Management: FC = () => {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Password" name="password">
-                      <Input />
+                      <Input type='text' />
                     </Form.Item>
                     <Form.Item label="Name" name="name">
                       <Input />
