@@ -53,32 +53,26 @@
   <tr class="expandRow">
     <td colspan="12">
       <div :class="{collapsed}" :style="{'max-height': getStatus ? '' : '0'}">
-        <div>
-          <span class="label">内存:</span>
-          <span class="value">{{
+        <div>内存: {{
             getStatus
                 ? `${formatByte(server.status.memory_used * 1024)}
                  / ${formatByte(server.status.memory_total * 1024)}`
                 : '–'
-            }}</span>
+          }}
         </div>
-        <div>
-          <span class="label">交换:</span>
-          <span class="value">{{
+        <div>交换: {{
             getStatus
                 ? `${formatByte(server.status.swap_used * 1024)}
                  / ${formatByte(server.status.swap_total * 1024)}`
                 : '–'
-            }}</span>
+          }}
         </div>
-        <div>
-          <span class="label">硬盘:</span>
-          <span class="value">{{
+        <div>硬盘: {{
             getStatus
                 ? `${formatByte(server.status.hdd_used * 1024 * 1024)}
                  / ${formatByte(server.status.hdd_total * 1024 * 1024)}`
                 : '–'
-            }}</span>
+          }}
         </div>
         <!--        <div id="expand_custom">{{server.custom}}</div>-->
       </div>
@@ -113,34 +107,12 @@ export default defineComponent({
 
 <style scoped>
 
-.label {
-  text-align: right;
-  margin-right: 0.5em;
-  display: inline-block;
-  width: 4em;
-}
-
-.value {
-  display: inline-flex;
-  align-items: center;
-  text-align: left;
-}
-
-.value:before {
-  content: "";
-  display: inline-block;
-  width: 0.5em;
-}
-
 .tableRow {
   background-color: rgba(249, 249, 249, .8);
   vertical-align: middle;
 }
 
 .expandRow td > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   overflow: hidden;
   transition: max-height .5s ease;
   max-height: 4em;
