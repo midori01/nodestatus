@@ -1,9 +1,10 @@
-name: Docker Release Test
+name: Docker Release Staging
 
 on:
   push:
     tags:
       - 'test*'
+  workflow_dispatch:
 
 jobs:
   release:
@@ -18,11 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-            submodules: recursive
-
-      - name: Check Version
-        id: checkver
-        uses: battila7/get-version-action@v2
+          submodules: recursive
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -40,7 +37,7 @@ jobs:
           max_attempts: 3
           command: |
             docker buildx build \
-            --platform=linux/amd64,linux/arm64 \
+            --platform=linux/amd64 \
             --output "type=image,push=true" \
             --file ./Dockerfile . \
-            --tag midori01/nodestatus:test
+            --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/nodestatus:test
