@@ -3,6 +3,7 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
+import { parseUptime } from '@nodestatus/web-utils/shared';
 
 type PushOptions = {
   pushTimeOut: number;
@@ -12,17 +13,6 @@ type PushOptions = {
     web_hook?: string;
     proxy?: string;
   }
-};
-
-const parseUptime = (uptime: number): string => {
-  if (uptime >= 86400) {
-    return `${Math.floor(uptime / 86400)} 天`;
-  }
-
-  const h = String(Math.floor(uptime / 3600)).padStart(2, '0');
-  const m = String(Math.floor((uptime / 60) % 60)).padStart(2, '0');
-  const s = String(Math.floor(uptime % 60)).padStart(2, '0');
-  return `${h}:${m}:${s}`;
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
@@ -64,12 +54,12 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
             : value;
         }
       });
-      str += `节点: *${item.name}*\n状态: `;
+      str += `节点: ${item.name}\n状态: `;
       if (item.status.online4 || item.status.online6) {
-        str += '✅ *在线*\n';
+        str += '✅ 在线\n';
         online++;
       } else {
-        str += '🔴 *离线*';
+        str += '🔴 离线';
         str += '\n\n';
         return;
       }
