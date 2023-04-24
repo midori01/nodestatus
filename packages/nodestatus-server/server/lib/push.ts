@@ -24,7 +24,7 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-const formatNetwork = computed(() => (data: number): string => {
+const formatNetwork = (data: number): string => {
   if (data < 1024) return `${data.toFixed(0)}B`;
   if (data < 1024 * 1024) return `${(data / 1024).toFixed(0)}K`;
   if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
