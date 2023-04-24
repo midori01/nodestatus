@@ -24,17 +24,13 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-const formatNetwork = (bytes: number) => {
-  if (bytes < 1024) {
-    return `${bytes.toFixed(2)} B/s`;
-  } else if (bytes < 1048576) {
-    return `${(bytes / 1024).toFixed(2)} K`;
-  } else if (bytes < 1073741824) {
-    return `${(bytes / 1048576).toFixed(2)} M`;
-  } else {
-    return `${(bytes / 1073741824).toFixed(2)} G`;
-  }
-};
+const formatNetwork = computed(() => (data: number): string => {
+  if (data < 1024) return `${data.toFixed(0)}B`;
+  if (data < 1024 * 1024) return `${(data / 1024).toFixed(0)}K`;
+  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
+  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)}G`;
+  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+});
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
