@@ -14,6 +14,14 @@ type PushOptions = {
   }
 };
 
+const formatNetwork = (network_in: number): string => {
+  if (network_in < 1024) return `${network_in.toFixed(0)}B`;
+  if (network_in < 1024 * 1024) return `${(network_in / 1024).toFixed(0)}K`;
+  if (network_in < 1024 * 1024 * 1024) return `${(network_in / 1024 / 1024).toFixed(1)}M`;
+  if (network_in < 1024 * 1024 * 1024 * 1024) return `${(network_in / 1024 / 1024 / 1024).toFixed(2)}G`;
+  return `${(network_in / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+};
+
 const parseUptime = (uptime: number): string => {
   if (uptime >= 86400) {
     return `${Math.floor(uptime / 86400)} 天`;
@@ -76,6 +84,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
+      str += `流量: ${formatNetwork(item.status.network_in)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
