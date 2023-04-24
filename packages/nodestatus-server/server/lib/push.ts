@@ -3,7 +3,7 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
-import { computed } from '@nodestatus/web-utils';
+import { computed } from '@nodestatus/web-utils/vue';
 
 type PushOptions = {
   pushTimeOut: number;
