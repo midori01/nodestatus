@@ -18,11 +18,22 @@ const parseUptime = (uptime: number): string => {
   if (uptime >= 86400) {
     return `${Math.floor(uptime / 86400)} 天`;
   }
-
   const h = String(Math.floor(uptime / 3600)).padStart(2, '0');
   const m = String(Math.floor((uptime / 60) % 60)).padStart(2, '0');
   const s = String(Math.floor(uptime % 60)).padStart(2, '0');
   return `${h}:${m}:${s}`;
+};
+
+const formatNetwork = (bytes: number) => {
+  if (bytes < 1024) {
+    return `${bytes.toFixed(2)} B/s`;
+  } else if (bytes < 1048576) {
+    return `${(bytes / 1024).toFixed(2)} K`;
+  } else if (bytes < 1073741824) {
+    return `${(bytes / 1048576).toFixed(2)} M`;
+  } else {
+    return `${(bytes / 1073741824).toFixed(2)} G`;
+  }
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
