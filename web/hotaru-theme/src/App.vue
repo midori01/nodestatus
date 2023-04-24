@@ -5,6 +5,7 @@
     <div class="container">
       <servers-table :servers="servers" />
       <update-time :updated="updated" />
+      <div style="height: 20px;"></div>
     </div>
     <the-footer />
   </global-context>
