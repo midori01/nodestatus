@@ -24,6 +24,14 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
+const formatNetwork = computed(() => (data: number): string => {
+  if (data < 1024) return `${data.toFixed(0)}B`;
+  if (data < 1024 * 1024) return `${(data / 1024).toFixed(0)}K`;
+  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
+  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)}G`;
+  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+});
+
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
   /* Username -> timer */
@@ -76,7 +84,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${parseEntities((Number(item.status.network_in) / 1073741824).toFixed(2).toString())}G ↑${parseEntities((Number(item.status.network_out) / 1073741824).toFixed(2).toString())}G \n`;
+      str += `流量: ↓${formatNetwork.value(item.status.network_in)} ↑${formatNetwork.value(item.status.network_out)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
