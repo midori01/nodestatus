@@ -76,7 +76,8 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ${Math.round(item.status.network_in / 1073741824)}G | ${Math.round(item.status.network_out / 1073741824)}G \n`;
+      str += `上传: ${Math.round(item.status.network_out / 1073741824)}G \n`;
+      str += `下载: ${Math.round(item.status.network_in / 1073741824})G \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
