@@ -1,3 +1,4 @@
+import { computed } from 'vue';
 import { timingSafeEqual } from 'crypto';
 import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
@@ -24,19 +25,13 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-const formatNetwork = (data: number) => {
-  if (data < 1024) {
-    return `${data.toFixed(2)}B`;
-  } else if (data < 1048576) {
-    return `${(data / 1024).toFixed(2)}K`;
-  } else if (data < 1073741824) {
-    return `${(data / 1048576).toFixed(2)}M`;
-  } else if (data < 1024 * 1024 * 1024 * 1024) {
-    return `${(data / 1073741824).toFixed(2)}G`;
-  } else {
-    return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
-  }
-};
+const formatNetwork = computed(() => (data: number): string => {
+  if (data < 1024) return `${data.toFixed(0)}B`;
+  if (data < 1024 * 1024) return `${(data / 1024).toFixed(0)}K`;
+  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
+  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)}G`;
+  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+});
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
