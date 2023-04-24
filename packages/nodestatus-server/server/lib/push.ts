@@ -3,7 +3,7 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
-import { formatNetwork, parseUptime } from '@nodestatus/web-utils';
+import { formatNetwork } from '@nodestatus/web-utils';
 
 type PushOptions = {
   pushTimeOut: number;
