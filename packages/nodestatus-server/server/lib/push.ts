@@ -3,7 +3,6 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
-import { formatNetwork } from '@nodestatus/web-utils';
 
 type PushOptions = {
   pushTimeOut: number;
@@ -77,7 +76,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ${formatNetwork(item.status.network_in)} | ${formatNetwork(item.status.network_out)} \n`;
+      str += `流量: ${Math.round(item.status.network_in / 1073741824)}G | ${Math.round(item.status.network_out / 1073741824)}G \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
