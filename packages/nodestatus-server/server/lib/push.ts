@@ -25,16 +25,16 @@ const parseUptime = (uptime: number): string => {
 };
 
 const formatNetwork = (data: number) => {
-  if (bytes < 1024) {
-    return `${bytes.toFixed(2)} B/s`;
-  } else if (bytes < 1048576) {
-    return `${(bytes / 1024).toFixed(2)}K`;
-  } else if (bytes < 1073741824) {
-    return `${(bytes / 1048576).toFixed(2)}M`;
-  } else if (bytes < 1024 * 1024 * 1024 * 1024) {
-    return `${(bytes / 1073741824).toFixed(2)}G`;
+  if (data < 1024) {
+    return `${data.toFixed(2)}B`;
+  } else if (data < 1048576) {
+    return `${(data / 1024).toFixed(2)}K`;
+  } else if (data < 1073741824) {
+    return `${(data / 1048576).toFixed(2)}M`;
+  } else if (data < 1024 * 1024 * 1024 * 1024) {
+    return `${(data / 1073741824).toFixed(2)}G`;
   } else {
-    return `${(bytes / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+    return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
   }
 };
 
