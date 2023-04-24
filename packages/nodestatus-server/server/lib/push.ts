@@ -31,7 +31,7 @@ function formatNetwork(data: number): string {
   if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
   if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)}G`;
   return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
-}；
+};
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
