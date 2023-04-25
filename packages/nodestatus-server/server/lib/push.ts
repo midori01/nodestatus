@@ -24,7 +24,7 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-function readableBytes = (bytesize: bytes): string => {
+function readableBytes(bytes) {
   if (!bytes) {
     return '0B'
   }
@@ -34,7 +34,7 @@ function readableBytes = (bytesize: bytes): string => {
 };
 
 function formatByteSize(bs) {
-  const x = readableBytes(bs);
+  const x = readableBytes(Number(bs)); // 转换 bs 为数值类型，再传递给 readableBytes()
   return typeof x === "number" ? x : 'NaN';
 };
 
