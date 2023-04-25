@@ -24,12 +24,18 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-function formatByte(data: number): string {
-  if (data < 1024) return `${data.toFixed(0)} B`;
-  if (data < 1024 * 1024) return `${(data / 1024).toFixed(2)} KiB`;
-  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(2)} MiB`;
-  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)} GiB`;
-  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)} TiB`;
+function readableBytes(bytes) {
+  if (!bytes) {
+    return '0B'
+  }
+  var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+    sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+};
+
+function formatByte(bs) {
+  const x = readableBytes(bs);
+  return !isNaN(x) && x !== "undefined" ? x : 'NaN';
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
