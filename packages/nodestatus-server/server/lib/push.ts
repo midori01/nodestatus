@@ -30,11 +30,12 @@ function readableBytes(bytes) {
               }
                 sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
               return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
-            },
+            };
+
 function formatByteSize(bs) {
                 const x = this.readableBytes(bs)
                 return x != "NaN undefined" ? x : 'NaN'
-            },
+            };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
