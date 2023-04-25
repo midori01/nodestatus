@@ -31,7 +31,7 @@ function formatByteSize(data) {
   const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
   const i = Math.floor(Math.log(data) / Math.log(1024));
   const result = parseFloat((data / Math.pow(1024, i)).toFixed(2));
-  return result + sizes[i] + "/s";
+  return result + sizes[i];
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
