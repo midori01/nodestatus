@@ -24,6 +24,20 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
+const readableBytes(bytes) {
+              if (!bytes) {
+                return '0B'
+              }
+              var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+                sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+              return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+            };
+
+const formatByteSize(bs) {
+                const x = this.readableBytes(bs)
+                return x != "NaN undefined" ? x : 'NaN'
+            };
+
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
   /* Username -> timer */
@@ -76,7 +90,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${parseEntities((Number(item.status.network_in) / 1073741824).toFixed(2).toString())}G ↑${parseEntities((Number(item.status.network_out) / 1073741824).toFixed(2).toString())}G \n`;
+      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)}G \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
