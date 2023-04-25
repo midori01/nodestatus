@@ -3,6 +3,7 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
+import useStatus from '@nodestatus/web-utils/vue/hooks/useStatus';
 
 type PushOptions = {
   pushTimeOut: number;
@@ -22,20 +23,6 @@ const parseUptime = (uptime: number): string => {
   const m = String(Math.floor((uptime / 60) % 60)).padStart(2, '0');
   const s = String(Math.floor(uptime % 60)).padStart(2, '0');
   return `${h}:${m}:${s}`;
-};
-
-function readableBytes(bytes) {
-  if (!bytes) {
-    return '0B'
-  }
-  var i = Math.floor(Math.log(bytes) / Math.log(1024)),
-    sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
-};
-
-function formatByte(bs) {
-  const x = readableBytes(bs);
-  return !isNaN(x) && x !== "undefined" ? x : 'NaN';
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
