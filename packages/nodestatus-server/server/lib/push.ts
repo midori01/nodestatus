@@ -25,17 +25,38 @@ const parseUptime = (uptime: number): string => {
 };
 
 function readableBytes(bytes) {
-              if (!bytes) {
-                return '${Math.floor(Math.log(bytes) / Math.log(1024))}0B'
-              }
-                sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-              return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
-            };
+  if (bytes === 0) {
+    return '0B';
+  }
+  var sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  var i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+};
+
+function readableSize(size, unit) {
+  const unitFactor = {
+    'B': 1,
+    'b': 1/8,
+    'Kb': 125,
+    'KB': 1024,
+    'Mb': 125000,
+    'MB': 1024*1024,
+    'Gb': 125000000,
+    'GB': 1024*1024*1024
+  };
+
+  if (unit in unitFactor) {
+    return size * unitFactor[unit];
+  }
+  else {
+    return size;
+  }
+};
 
 function formatByteSize(bs) {
-                const x = this.readableBytes(bs)
-                return x != "NaN undefined" ? x : 'NaN'
-            };
+    const x = readableBytes(readableSize(bs, 'B'));
+    return isNaN(x) ? 'NaN' : x;
+};
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
