@@ -35,7 +35,7 @@ function readableBytes(bytes) {
 
 function formatByteSize(bs) {
   const x = readableBytes(bs);
-  return !isNaN(x) && x !== "undefined" ? x : 'NaN';
+  return typeof x === "number" ? x : 'NaN';
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
@@ -90,7 +90,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)}G \n`;
+      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
