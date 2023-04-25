@@ -28,9 +28,12 @@ function readableBytes(bytes) {
   if (!bytes) {
     return '0B'
   }
-  var i = Math.floor(Math.log(bytes) / Math.log(1024)),
-    sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+  var Kbps=125, Mbps=Kbps*1000, Gbps=Mbps*1000, Tbps=Gbps*1000;
+  if (bytes < Kbps) return (bytes * 8).toFixed(2) + 'bps';
+  if (bytes < Mbps) return (bytes / Kbps).toFixed(2) + 'Kbps';
+  if (bytes < Gbps) return (bytes / Mbps).toFixed(2) + 'Mbps';
+  if (bytes < Tbps) return (bytes / Gbps).toFixed(2) + 'Gbps';
+  else return (bytes / Tbps).toFixed(2) + 'Tbps';
 };
 
 function formatByteSize(bs) {
