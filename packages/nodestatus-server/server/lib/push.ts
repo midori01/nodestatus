@@ -34,8 +34,8 @@ function readableBytes(bytes) {
 };
 
 function formatByteSize(bs) {
-  const x = readableBytes(Number(bs)); // 转换 bs 为数值类型，再传递给 readableBytes()
-  return typeof x === "number" ? x : 'NaN';
+  const x = Number(bs);
+  return !isNaN(x) ? x : NaN;
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
