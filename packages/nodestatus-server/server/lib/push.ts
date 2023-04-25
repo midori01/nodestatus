@@ -3,6 +3,7 @@ import { Telegraf } from 'telegraf';
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './utils';
 import type NodeStatus from './nodestatus';
+import { computed, toRefs } from 'vue';
 
 type PushOptions = {
   pushTimeOut: number;
@@ -24,19 +25,21 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-function readableBytes(bytes) {
-  if (bytes == null || bytes === '') {
-    return NaN;
-  }
-  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
-};
+const formatNetwork = computed(() => (data: number): string => {
+  if (data < 1024) return `${data.toFixed(0)}B`;
+  if (data < 1024 * 1024) return `${(data / 1024).toFixed(0)}K`;
+  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(1)}M`;
+  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)}G`;
+  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)}T`;
+});
 
-function formatByteSize(bs) {
-  const x = readableBytes(bs);
-  return !isNaN(x) ? x : 'NaN';
-};
+const formatByte = computed(() => (data: number): string => {
+  if (data < 1024) return `${data.toFixed(0)} B`;
+  if (data < 1024 * 1024) return `${(data / 1024).toFixed(2)} KiB`;
+  if (data < 1024 * 1024 * 1024) return `${(data / 1024 / 1024).toFixed(2)} MiB`;
+  if (data < 1024 * 1024 * 1024 * 1024) return `${(data / 1024 / 1024 / 1024).toFixed(2)} GiB`;
+  return `${(data / 1024 / 1024 / 1024 / 1024).toFixed(2)} TiB`;
+});
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
@@ -90,7 +93,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)} \n`;
+      str += `流量: ↓${formatByte(item.status.network_in)} ↑${formatByte(item.status.network_out)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
