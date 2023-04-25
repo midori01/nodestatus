@@ -24,19 +24,19 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-const readableBytes(bytes) {
-              if (!bytes) {
-                return '0B'
-              }
-              var i = Math.floor(Math.log(bytes) / Math.log(1024)),
-                sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-              return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
-            };
+function readableBytes(bytes) {
+  if (!bytes) {
+    return '0B'
+  }
+  var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+    sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+};
 
-const formatByteSize(bs) {
-                const x = this.readableBytes(bs)
-                return x != "NaN undefined" ? x : 'NaN'
-            };
+function formatByteSize(bs) {
+  const x = readableBytes(bs);
+  return !isNaN(x) && x !== "undefined" ? x : 'NaN';
+};
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
   const pushList: Array<(message: string) => void> = [];
