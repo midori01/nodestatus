@@ -24,28 +24,18 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-function readableBytes(bytes, options = {}) {
-  if (bytes == null || bytes === '') { // 检查传递的参数是否有效
+function readableBytes(bytes) {
+  if (bytes == null || bytes === '') {
     return NaN;
   }
-  if (bytes === 0) {
-    return '0B';
-  }
-  const defaults = {
-    unitPrefixes: ["", "K", "M", "G", "T", "P", "E", "Z", "Y"],
-    base: 1024,
-    decimal: 2,
-    separator: ' ',
-    unitSeparator: '',
-    unitIndex: undefined
-  };
-  const settings = Object.assign(defaults, options);
-  const { unitPrefixes, base, decimal, separator, unitSeparator, unitIndex } = settings;
-  const unitIndexMax = unitPrefixes.length - 1;
-  const i = unitIndex === undefined ? Math.floor(Math.log(bytes) / Math.log(base)) : unitIndex;
-  const value = parseFloat((bytes / Math.pow(base, i)).toFixed(decimal));
-  const unit = unitPrefixes[Math.min(i, unitIndexMax)];
-  return `${value}${unitSeparator}${unit}${separator}`;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+};
+
+function formatByteSize(bs) {
+  const x = readableBytes(bs);
+  return !isNaN(x) ? x : 'NaN';
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
@@ -100,7 +90,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${readableBytes(item.status.network_in)} ↑${readableBytes(item.status.network_out)} \n`;
+      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
