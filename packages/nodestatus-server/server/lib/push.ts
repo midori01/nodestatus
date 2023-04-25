@@ -24,14 +24,18 @@ const parseUptime = (uptime: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-function formatByteSize(byteSize) {
-  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
-  let index = 0;
-  while (byteSize >= 1024 && index < units.length - 1) {
-    byteSize /= 1024;
-    index++;
+function readableBytes(bytes) {
+  if (bytes == null || bytes === '') {
+    return NaN;
   }
-  return `${byteSize.toFixed(2)} ${units[index]}`;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
+};
+
+function formatByteSize(bs) {
+  const x = readableBytes(bs);
+  return !isNaN(x) ? x : 'NaN';
 };
 
 export default function createPush(this: NodeStatus, options: PushOptions) {
@@ -86,7 +90,7 @@ export default function createPush(this: NodeStatus, options: PushOptions) {
       str += `CPU: ${Math.round(item.status.cpu)}% \n`;
       str += `内存: ${Math.round((item.status.memory_used / item.status.memory_total) * 100)}% \n`;
       str += `硬盘: ${Math.round((item.status.hdd_used / item.status.hdd_total) * 100)}% \n`;
-      str += `流量: ↓${formatByteSize(item.status.network_in)} ↑${formatByteSize(item.status.network_out)} \n`;
+      str += `流量: ↓${formatByteSize(server.status.network_in)} ↑${formatByteSize(server.status.network_in)} \n`;
       str += `在线: ${parseUptime(item.status.uptime)} \n`;
       str += '\n';
     });
