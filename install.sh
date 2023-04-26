@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-#=================================================
-#  System Required: CentOS/Debian/ArchLinux with Systemd Support
-#  Description: NodeStatus Client-Go
-#  Version: v1.0.1
-#  Author: Kagurazaka Mizuki
-#=================================================
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
@@ -82,12 +76,12 @@ function install_client() {
     ;;
   esac
   mkdir -p /usr/local/NodeStatus/client/
-  cd /tmp && wget -N "https://github.com/cokemine/nodestatus-client-go/releases/latest/download/status-client_linux_${arch}.tar.gz"
+  cd /tmp && wget -N "https://github.com/midori01/nodestatus-client/releases/latest/download/status-client_linux_${arch}.tar.gz"
   tar -zxvf "status-client_linux_${arch}.tar.gz" status-client
   mv status-client /usr/local/NodeStatus/client/
   chmod +x /usr/local/NodeStatus/client/status-client
   [[ -n ${dsn} ]] && echo -e "DSN=\"${dsn}\"" >/usr/local/NodeStatus/client/config.conf
-  wget https://raw.githubusercontent.com/cokemine/nodestatus-client-go/master/service/status-client.service -P /usr/lib/systemd/system/
+  wget https://raw.githubusercontent.com/midori01/nodestatus-client/master/service/status-client.service -P /usr/lib/systemd/system/
   systemctl enable status-client
   systemctl start status-client
   check_pid
