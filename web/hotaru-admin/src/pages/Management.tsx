@@ -90,8 +90,7 @@ const parseInstallationScript = (
 ): string => {
   const protocol = document.location.protocol.replace('http', 'ws');
   const { host } = window.location;
-  const firstPath = window.location.pathname.split('/')[1];
-  const dsn = `${protocol}//${username}:${password}@${host}/${firstPath}`;
+  const dsn = `${protocol}//${username}:${password}@${host}`;
   return `bash <(curl -sSLf "https://raw.githubusercontent.com/midori01/nodestatus/master/install.sh") --dsn ${dsn}`;
 };
 
