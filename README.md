@@ -1,4 +1,4 @@
-# nodestatus
+# nodestatus-server
 `Install`
 ```bash
 mkdir ~/nodestatus
