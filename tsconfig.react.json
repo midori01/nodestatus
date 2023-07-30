@@ -11,8 +11,7 @@
     ]
   },
   "include": [
-    "web/**/*.ts",
-    "web/**/*.tsx",
-    "web/**/*.vue"
+    "web/hotaru-admin/**/*.ts",
+    "web/hotaru-admin/**/*.tsx"
   ]
 }
