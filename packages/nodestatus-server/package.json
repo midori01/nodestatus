@@ -1,6 +1,6 @@
 {
   "name": "nodestatus-server",
-  "version": "v1.2.7-beta.5-midori-jul30",
+  "version": "v1.2.7-beta.5-midori-jul31",
   "repository": {
     "type": "git",
     "url": "https://github.com/midori01/nodestatus.git",
@@ -58,7 +58,6 @@
     "hotaru-theme": "workspace:*",
     "https-proxy-agent": "^5.0.1",
     "ipaddr.js": "^2.0.1",
-    "isomorphic-timers-promises": "^1.0.1",
     "jsonwebtoken": "^9.0.0",
     "koa": "^2.14.1",
     "koa-body": "^6.0.1",
