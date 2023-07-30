@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "composite": true,
+    "jsx": "preserve",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ]
+  },
+  "include": [
+    "web/*-theme/**/*.ts",
+    "web/*-theme/**/*.tsx",
+    "web/*-theme/**/*.vue"
+  ]
+}
