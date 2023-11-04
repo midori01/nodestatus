@@ -6,6 +6,7 @@
   "license": "MIT",
   "author": "midori01",
   "main": "index.js",
+  "type": "module",
   "engines": {
     "node": ">=16.13.0"
   },
