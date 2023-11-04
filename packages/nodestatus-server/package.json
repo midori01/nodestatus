@@ -1,6 +1,6 @@
 {
   "name": "nodestatus-server",
-  "version": "v1.2.7-beta.5-midori-jul31",
+  "version": "v1.2.8-beta-midori-nov5",
   "repository": {
     "type": "git",
     "url": "https://github.com/midori01/nodestatus.git",
