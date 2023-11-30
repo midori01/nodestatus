@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'TEST') {
 }
 
 const program = new Command('NodeStatus')
+  .addOption(createOption('-h, --host <host>', 'Web server listening address').env('HOST').default('0.0.0.0'))
   .addOption(createOption('-p, --port <port>', 'Web server listening port').env('PORT').default(35601).argParser(value => parseInt(value, 10)))
   .addOption(createOption('-i, --interval <interval>', 'Update interval').env('INTERVAL').default(1500).argParser(value => parseInt(value, 10)))
   .addOption(createOption('-v, --verbose', 'Verbose mode').env('VERBOSE').default(false))
