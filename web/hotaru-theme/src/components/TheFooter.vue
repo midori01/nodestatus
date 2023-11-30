@@ -12,8 +12,6 @@ export default defineComponent({
 });
 </script>
 
-<script async src="https://lvlv.lv/umami/script.js" data-website-id="8c6f1f0c-d6b3-44d0-b4f5-badfb366a181"></script>
-
 <style>
 .footer p {
   text-align: center;
