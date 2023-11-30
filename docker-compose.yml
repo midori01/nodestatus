@@ -3,9 +3,11 @@ services:
   nodestatus:
     image: midori01/nodestatus
     container_name: nodestatus
+    network_mode: host
     restart: always
 
     environment:
+      HOST: "0.0.0.0"
       PORT: 35601
       VERBOSE: "false"
       PING_INTERVAL: 30
@@ -34,6 +36,3 @@ services:
     volumes:
       - /usr/local/NodeStatus/server:/usr/local/NodeStatus/server
       - /tmp:/tmp:rw
-
-    ports:
-      - "35601:35601"
