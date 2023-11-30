@@ -33,6 +33,6 @@ app.use(serve(resolve(__dirname, `./dist/${config.webTheme}`), { maxage: 2592000
 
 const [server, ipc] = await createStatus(app);
 
-server.listen(config.port, '127.0.0.1', () => logger.info(`🎉  NodeStatus is listening on http://127.0.0.1:${config.port}`));
+server.listen(config.port, config.host, () => logger.info(`🎉  NodeStatus is listening on http://${config.host}:${config.port}`));
 
 ipc && ipc.listen(config.ipcAddress, () => logger.info(`🎉  NodeStatus Ipc is listening on ${config.ipcAddress}`));
